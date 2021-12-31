@@ -2,19 +2,18 @@
 .auth
     width: 100vw
     height: 100vh
-    color: #888
     display: flex
     justify-content: center
     align-items: center
     background-color: beige
     text-align: center
     h2
-        font-size: 1.75rem
+        font-size: 2.5rem
         margin-bottom: 1rem
     &--mainBox
         padding: 2rem 3rem
         border-radius: 5px
-        background-color: #fff
+        background-color: lighten(beige, 7.5)
         box-shadow: 2px 2px 2px #ccc
         .form
             &--item
@@ -22,19 +21,30 @@
                 &:last-of-type
                     margin-bottom: 1rem
                 input
+                    min-width: 22.5rem
                     padding: .5rem 1rem
-                    font-size: 1.25rem
+                    font-size: 1.4rem
                     border-radius: 5px
                     border: #ccc 1px solid
                     outline: none
                     &::placeholder
                         color: #ccc
+                &-password
+                    position: relative
+                    .fa-eye
+                        position: absolute
+                        right: .5rem
+                        top: 25%
+                        width: 1.5rem
+                        cursor: pointer
+                        &.off
+                            color: #ccc
             &--button
-                +button($color: #999, $bgColor: darken(beige, 4))
+                +button($bgColor: darken(beige, 4))
                 margin-bottom: 1rem
                 min-width: 10rem
                 &:disabled
                     color: #ddd
-        p
-            cursor: pointer
-            font-size: .8rem
+            &--note
+                cursor: pointer
+                font-size: .8rem

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const initialFormData = {
 	name: "",
@@ -9,6 +11,8 @@ const initialFormData = {
 const Auth = () => {
 	const [isLogin, setIsLogin] = useState(true);
 	const [formData, setFormData] = useState(initialFormData);
+	const [showPassword, setShowPassword] = useState(false);
+
 	const { name, email, password } = formData;
 
 	const handleChange = (e) => {
@@ -57,25 +61,33 @@ const Auth = () => {
 								onChange={handleChange}
 							/>
 						</div>
-						<div className="form--item">
+						<div className="form--item form--item-password">
 							<input
-								type="password"
+								type={showPassword ? "text" : "password"}
 								placeholder="Password"
 								name="password"
 								value={password}
 								onChange={handleChange}
 							/>
+							<FontAwesomeIcon
+								className={showPassword ? "" : "off"}
+								icon={faEye}
+								onClick={() => setShowPassword(!showPassword)}
+							/>
 						</div>
 						<button
 							className="form--button"
-							disabled={!name || !email || !password}
+							disabled={!name.trim() || !email || !password}
 						>
 							Submit
 						</button>
 					</form>
-					<p onClick={() => setIsLogin(!isLogin)}>
-						{isLogin ? "Not registered yet?" : "Login?"}
-					</p>
+					<span
+						className="form--note"
+						onClick={() => setIsLogin(!isLogin)}
+					>
+						{isLogin ? "Not registered yet?" : "Go to Login?"}
+					</span>
 				</section>
 			</div>
 		</>
