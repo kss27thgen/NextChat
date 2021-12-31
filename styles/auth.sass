@@ -1,0 +1,40 @@
+
+.auth
+    width: 100vw
+    height: 100vh
+    color: #888
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: beige
+    text-align: center
+    h2
+        font-size: 1.75rem
+        margin-bottom: 1rem
+    &--mainBox
+        padding: 2rem 3rem
+        border-radius: 5px
+        background-color: #fff
+        box-shadow: 2px 2px 2px #ccc
+        .form
+            &--item
+                margin-bottom: .5rem
+                &:last-of-type
+                    margin-bottom: 1rem
+                input
+                    padding: .5rem 1rem
+                    font-size: 1.25rem
+                    border-radius: 5px
+                    border: #ccc 1px solid
+                    outline: none
+                    &::placeholder
+                        color: #ccc
+            &--button
+                +button($color: #999, $bgColor: darken(beige, 4))
+                margin-bottom: 1rem
+                min-width: 10rem
+                &:disabled
+                    color: #ddd
+        p
+            cursor: pointer
+            font-size: .8rem
