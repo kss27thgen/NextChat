@@ -1,4 +1,6 @@
 import Head from "next/head";
+import AuthContextComponent from "../components/AuthContextComponent";
+import AuthState from "../context/auth/AuthState";
 import "../styles/globals.css";
 import "../styles/main.sass";
 
@@ -13,7 +15,10 @@ function MyApp({ Component, pageProps }) {
 					content="initial-scale=1.0, width=device-width"
 				/>
 			</Head>
-			<Component {...pageProps} />
+			<AuthState>
+				<AuthContextComponent />
+				<Component {...pageProps} />
+			</AuthState>
 		</>
 	);
 }
