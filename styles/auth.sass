@@ -12,7 +12,7 @@
         margin-bottom: 1rem
     &--mainBox
         padding: 2rem 3rem
-        border-radius: 5px
+        border-radius: 8px
         background-color: lighten(beige, 7.5)
         box-shadow: 2px 2px 2px #ccc
         .form
@@ -40,10 +40,26 @@
                         cursor: pointer
                         &.off
                             color: #ccc
+                .avatar
+                    font-size: .8rem
+                    label
+                        cursor: pointer
+                    .filename
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                    .fa-user-plus
+                        width: 1.5rem
+                        color: #8eaef3
+                    .fa-times
+                        width: .8rem
+                        margin-left: 5px
+                        cursor: pointer
             &--button
                 +button($bgColor: darken(beige, 4))
                 margin-bottom: 1rem
                 min-width: 10rem
+                color: darken(beige, 50)
                 &:disabled
                     color: #ddd
             &--note
