@@ -1,1 +1,35 @@
+.index
+    background-color: $light-beige
+    &--wrapper
+        display: flex
+        height: 100vh
+        transition: .3s
+        transform: translateX(-20rem)
+        &.on
+            transform: translateX(0)
+        +mq(lg)
+            transform: translateX(0)
 
+.index
+    aside
+        position: relative
+        width: 20rem
+        background-color: $beige
+        padding: 2rem 1rem
+        border-right: .9em dotted $light-beige
+        .fa-arrow-circle-left
+            position: absolute
+            right: -4.5rem
+            top: 50%
+            transition: .4s
+            width: 2.5rem
+            cursor: pointer
+            color: $beige
+            &.off
+                transform: rotateZ(180deg)
+            +mq(lg)
+                opacity: 0
+
+.index
+    main
+        padding: 2rem 5rem
