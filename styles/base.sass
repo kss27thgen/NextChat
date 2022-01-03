@@ -14,6 +14,13 @@ a
 // Color
 $light-beige: #f3f3e6
 
+// Media query
+$breakpoints: ("sm": "screen and (min-width: 550px)", "md": "screen and (min-width: 768px)", "lg": "screen and (min-width: 1000px)", "xl": "screen and (min-width: 1200px)")
+
+@mixin mq($breakpoint)
+    @media #{map-get($breakpoints, $breakpoint)}
+        @content
+
 // Mixin 
 @mixin button($color: #555, $bgColor)
     font-size: 1.4rem
