@@ -2,7 +2,7 @@
     box-sizing: border-box
     padding: 0
     margin: 0
-    user-select: none
+    // user-select: none
 body
     color: #555
 
@@ -11,6 +11,10 @@ ul
 a
     text-decoration: none
 
+// Color
+$light-beige: #f3f3e6
+
+// Mixin 
 @mixin button($color: #555, $bgColor)
     font-size: 1.4rem
     padding: .25rem 2rem
@@ -19,4 +23,4 @@ a
     cursor: pointer
     border: none
     border-radius: 5px
-    box-shadow: 1px 1px 1px darken($bgColor, 30)
+    box-shadow: 2px 1px 1px darken($bgColor, 30)

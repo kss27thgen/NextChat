@@ -5,7 +5,7 @@
     display: flex
     justify-content: center
     align-items: center
-    background-color: beige
+    background-color: $light-beige
     text-align: center
     h2
         font-size: 2.5rem
@@ -13,7 +13,7 @@
     &--mainBox
         padding: 2rem 3rem
         border-radius: 8px
-        background-color: lighten(beige, 7.5)
+        background-color: #e2cca4
         box-shadow: 2px 2px 2px #ccc
         .form
             &--item
@@ -41,25 +41,24 @@
                         &.off
                             color: #ccc
                 .avatar
-                    font-size: .8rem
+                    font-size: .7rem
+                    color: #888
                     label
                         cursor: pointer
                     .filename
                         display: flex
                         justify-content: center
                         align-items: center
-                    .fa-user-plus
-                        width: 1.5rem
-                        color: #8eaef3
+                    .fa-user-circle
+                        width: 1.75rem
                     .fa-times
                         width: .8rem
                         margin-left: 5px
                         cursor: pointer
             &--button
-                +button($bgColor: darken(beige, 4))
+                +button($bgColor: $light-beige)
                 margin-bottom: 1rem
                 min-width: 10rem
-                color: darken(beige, 50)
                 &:disabled
                     color: #ddd
             &--note

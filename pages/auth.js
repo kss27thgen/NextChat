@@ -4,7 +4,7 @@ import {
 	faEye,
 	faUser,
 	faTimes,
-	faUserPlus,
+	faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { auth, storage } from "../firebase";
 import {
@@ -44,7 +44,7 @@ const Auth = () => {
 			setFileData({
 				...fileData,
 				fileObject: e.target.files[0],
-				fileName: e.target.files[0].name,
+				fileName: Date.now() + "_" + e.target.files[0].name,
 			});
 		} else {
 			setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -123,7 +123,7 @@ const Auth = () => {
 									<div className="avatar">
 										<label htmlFor="fileData">
 											<FontAwesomeIcon
-												icon={faUserPlus}
+												icon={faUserCircle}
 											/>
 										</label>
 										<div>
@@ -151,7 +151,7 @@ const Auth = () => {
 												</>
 											) : (
 												<label htmlFor="fileData">
-													AVATAR
+													ADD AVATAR
 												</label>
 											)}
 										</div>
