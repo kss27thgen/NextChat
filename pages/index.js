@@ -7,37 +7,35 @@ import { useState } from "react";
 import { auth } from "../firebase";
 
 const Home = () => {
-	const [onSidebar, setOnSidebar] = useState(true);
+	const [onSidebar, setOnSidebar] = useState(false);
 
 	return (
 		<>
 			<div className="index">
-				<div className={`${onSidebar ? "on" : "off"} index--wrapper`}>
-					<aside>
-						<ul>
-							<li>
-								<Link href="/">Home</Link>
-							</li>
-							<li>
-								<Link href="/auth">Auth</Link>
-							</li>
-							<li
-								onClick={() => {
-									signOut(auth);
-									Router.push("/auth");
-								}}
-							>
-								signOut
-							</li>
-						</ul>
-						<FontAwesomeIcon
-							className={onSidebar ? "on" : "off"}
-							icon={faArrowCircleLeft}
-							onClick={() => setOnSidebar(!onSidebar)}
-						/>
-					</aside>
-					<main>main</main>
-				</div>
+				<aside className={onSidebar ? "on" : "off"}>
+					<ul>
+						<li>
+							<Link href="/">Home</Link>
+						</li>
+						<li>
+							<Link href="/auth">Auth</Link>
+						</li>
+						<li
+							onClick={() => {
+								signOut(auth);
+								Router.push("/auth");
+							}}
+						>
+							signOut
+						</li>
+					</ul>
+					<FontAwesomeIcon
+						className={onSidebar ? "on" : "off"}
+						icon={faArrowCircleLeft}
+						onClick={() => setOnSidebar(!onSidebar)}
+					/>
+				</aside>
+				<main>main</main>
 			</div>
 		</>
 	);
