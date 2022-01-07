@@ -5,6 +5,7 @@
 .index
     aside
         position: absolute
+        left: -20rem
         height: 100vh
         width: 20rem
         z-index: 2
@@ -12,7 +13,6 @@
         padding: 2rem 1rem
         border-right: .9em dotted $light-beige
         transition: .3s
-        left: -20rem
         &.on
             left: 0rem
         +mq(lg)
@@ -20,7 +20,7 @@
         .fa-arrow-circle-left
             position: absolute
             right: -4rem
-            top: 4%
+            top: 7%
             transition: .4s
             width: 2.5rem
             cursor: pointer
@@ -29,6 +29,21 @@
                 transform: rotateZ(180deg)
             +mq(lg)
                 display: none
+    .sidebar
+        &--currentUser
+            display: flex
+            align-items: center
+            img
+                width: 50px
+                height: 50px
+                border-radius: 50%
+            strong
+                font-size: 1.25rem
+                margin-left: 5px
+            .fa-door-open
+                width: 2.5rem
+                margin-left: auto
+                cursor: pointer
 
 .index
     main

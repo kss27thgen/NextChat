@@ -11,7 +11,12 @@ import {
 
 const AuthState = (props) => {
 	const initialState = {
-		currentUser: null,
+		currentUser: {
+			id: "",
+			name: "",
+			photoUrl: "",
+			email: "",
+		},
 		error: null,
 	};
 

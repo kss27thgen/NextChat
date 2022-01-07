@@ -1,4 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
+import Router from "next/router";
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/auth/AuthContext";
 import { auth } from "../firebase";

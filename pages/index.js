@@ -1,41 +1,27 @@
-import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { signOut } from "firebase/auth";
-import Link from "next/link";
+import { useState, useContext, useEffect } from "react";
+import SidebarIndex from "../components/SidebarIndex";
+import MainIndex from "../components/MainIndex";
+import AuthContext from "../context/auth/AuthContext";
 import Router from "next/router";
-import { useState } from "react";
-import { auth } from "../firebase";
 
 const Home = () => {
+	const authContext = useContext(AuthContext);
+	const { currentUser } = authContext;
+
 	const [onSidebar, setOnSidebar] = useState(false);
+
+	useEffect(() => {
+		if (!currentUser) Router.push("/auth");
+	}, [currentUser]);
 
 	return (
 		<>
 			<div className="index">
-				<aside className={onSidebar ? "on" : "off"}>
-					<ul>
-						<li>
-							<Link href="/">Home</Link>
-						</li>
-						<li>
-							<Link href="/auth">Auth</Link>
-						</li>
-						<li
-							onClick={() => {
-								signOut(auth);
-								Router.push("/auth");
-							}}
-						>
-							signOut
-						</li>
-					</ul>
-					<FontAwesomeIcon
-						className={onSidebar ? "on" : "off"}
-						icon={faArrowCircleLeft}
-						onClick={() => setOnSidebar(!onSidebar)}
-					/>
-				</aside>
-				<main>main</main>
+				<SidebarIndex
+					onSidebar={onSidebar}
+					setOnSidebar={setOnSidebar}
+				/>
+				<MainIndex />
 			</div>
 		</>
 	);
