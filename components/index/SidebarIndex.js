@@ -1,20 +1,19 @@
 import Link from "next/link";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	faArrowCircleLeft,
 	faDoorOpen,
 	faPlusSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AuthContext from "../context/auth/AuthContext";
+import AuthContext from "../../context/auth/AuthContext";
 import Router from "next/router";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
-const SidebarIndex = ({ onSidebar, setOnSidebar }) => {
+const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext;
-
 	const { name, photoUrl, id } = currentUser;
 
 	return (
@@ -46,15 +45,9 @@ const SidebarIndex = ({ onSidebar, setOnSidebar }) => {
 						<FontAwesomeIcon icon={faPlusSquare} />
 					</div>
 					<ul>
-						<li>
-							<strong>Room 1</strong>
-						</li>
-						<li>
-							<strong>Room 2</strong>
-						</li>
-						<li>
-							<strong>Room 3</strong>
-						</li>
+						{rooms.map((room) => (
+							<li key={room.id}>{room.roomname}</li>
+						))}
 					</ul>
 				</div>
 
