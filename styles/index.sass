@@ -2,41 +2,6 @@
     background-color: $light-beige
     position: relative
 
-// Modal function
-.index
-    .modal
-        &--overlay
-            position: absolute
-            top: 0
-            bottom: 0
-            left: 0
-            right: 0
-            width: 100vw
-            height: 100vh
-            background-color: rgba(0, 0, 0, .5)
-            z-index: -1
-            opacity: 0
-            transition: .3s
-            &.on
-                z-index: 5
-                opacity: 1
-        &--body
-            position: absolute
-            top: 10vh
-            bottom: 10vh
-            left: 10vw
-            right: 10vw
-            width: 80vw
-            height: 80vh
-            transform: scale(0)
-            transition: .3s
-            background-color: $light-beige
-            z-index: -1
-            border-radius: 5px
-            &.on
-                z-index: 10
-                transform: scale(1)
-
 // Index sidebar
 .index
     .sidebar
@@ -70,11 +35,13 @@
         &--currentUser
             display: flex
             align-items: center
-            margin-bottom: 2rem
             background-color: #fff
             border-radius: 5px
             padding: 0 .25rem
             border: #ccc 1px solid
+            padding: .1rem
+            // &:hover + .sidebar--userMenu .wrapper
+            //     opacity: 1
             a
                 display: flex
                 align-items: center
@@ -82,15 +49,45 @@
                 width: 55px
                 height: 55px
                 border-radius: 50%
+                cursor: pointer
+                border: 1px solid #bbb
             strong
                 font-size: 1.5rem
                 margin-left: 10px
-            .fa-door-open
-                width: 2rem
-                height: 2rem
-                margin-left: auto
-                cursor: pointer
 
+        &--userMenu
+            height: 3rem
+            // .wrapper
+            //     opacity: 1
+            //     transition: .4s
+            //     &:hover
+            //         opacity: 1
+            ul
+                display: flex
+            li
+                display: flex
+                justify-content: center
+                align-items: center
+                background-color: #fff
+                flex-basis: 37.5%
+                border: $light-beige 1px solid
+                cursor: pointer
+                border-radius: 3px
+                margin-top: .1rem
+                color: #777
+                &:hover
+                    color: #555
+                &:first-of-type
+                    margin-left: auto
+                    margin-right: .2rem
+            .fa-door-open
+                margin-left: .2rem
+                width: 1.5rem
+                height: 1.5rem
+            .fa-user
+                margin-left: .2rem
+                width: 1.25rem
+                height: 1.25rem
         &--roomList
             .create
                 display: flex
@@ -105,9 +102,15 @@
                     cursor: pointer
             li
                 padding: 1rem .5rem
-                margin-bottom: .25rem
+                margin-bottom: .3rem
                 border-radius: 5px
                 background-color: $light-beige
+                font-weight: bold
+                font-size: 1.25rem
+                cursor: pointer
+                color: #777
+                &:hover
+                    color: #555
 
 // Index main
 .index

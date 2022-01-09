@@ -6,13 +6,13 @@ import Router from "next/router";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
-import Modal from "../components/index/Modal";
+import Modal from "../components/index/modal/Modal";
 
 const Home = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext;
 
-	const [onSidebar, setOnSidebar] = useState(false);
+	const [onSidebar, setOnSidebar] = useState(true);
 	const [rooms, setRooms] = useState([]);
 	const [onModal, setOnModal] = useState(false);
 

@@ -4,9 +4,11 @@ import {
 	faArrowCircleLeft,
 	faDoorOpen,
 	faPlusSquare,
+	faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthContext from "../../context/auth/AuthContext";
+import ModalContext from "../../context/modal/ModalContext";
 import Router from "next/router";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
@@ -22,35 +24,54 @@ const SidebarIndex = ({
 	const { currentUser } = authContext;
 	const { name, photoUrl, id } = currentUser;
 
+	const modalContext = useContext(ModalContext);
+	const { setModalType } = modalContext;
+
 	return (
 		<>
 			<aside className={`${onSidebar ? "on" : "off"} sidebar`}>
 				<div className="sidebar--currentUser">
-					<Link href={`/users/${id}`}>
-						<a>
-							<p>
-								<img src={photoUrl} alt="avatar" />
-							</p>
-							<strong>{name ? name : "username"}</strong>
-						</a>
-					</Link>
-					<FontAwesomeIcon
-						icon={faDoorOpen}
-						onClick={() => {
-							if (confirm("Logout?")) {
-								Router.push("/auth");
-								signOut(auth);
-							}
-						}}
-					/>
+					<p>
+						<img
+							src={photoUrl}
+							alt="avatar"
+							onClick={() => Router.push(`/users/${id}`)}
+						/>
+					</p>
+					<strong>{name ? name : "username"}</strong>
+				</div>
+
+				<div className="sidebar--userMenu">
+					<div className="wrapper">
+						<ul>
+							<li onClick={() => Router.push(`/users/${id}`)}>
+								<p>Profile</p>
+								<FontAwesomeIcon icon={faUser} />
+							</li>
+							<li
+								onClick={() => {
+									if (confirm("Logout?")) {
+										Router.push("/auth");
+										signOut(auth);
+									}
+								}}
+							>
+								<p>Logout</p>
+								<FontAwesomeIcon icon={faDoorOpen} />
+							</li>
+						</ul>
+					</div>
 				</div>
 
 				<div className="sidebar--roomList">
 					<div className="create">
-						<p>Create a Room</p>
+						<p>Create Room</p>
 						<FontAwesomeIcon
 							icon={faPlusSquare}
-							onClick={() => setOnModal(!onModal)}
+							onClick={() => {
+								setModalType("createRoom");
+								setOnModal(!onModal);
+							}}
 						/>
 					</div>
 					<ul>
