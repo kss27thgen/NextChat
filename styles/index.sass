@@ -2,6 +2,42 @@
     background-color: $light-beige
     position: relative
 
+// Modal function
+.index
+    .modal
+        &--overlay
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            width: 100vw
+            height: 100vh
+            background-color: rgba(0, 0, 0, .5)
+            z-index: -1
+            opacity: 0
+            transition: .3s
+            &.on
+                z-index: 5
+                opacity: 1
+        &--body
+            position: absolute
+            top: 10vh
+            bottom: 10vh
+            left: 10vw
+            right: 10vw
+            width: 80vw
+            height: 80vh
+            transform: scale(0)
+            transition: .3s
+            background-color: $light-beige
+            z-index: -1
+            border-radius: 5px
+            &.on
+                z-index: 10
+                transform: scale(1)
+
+// Index sidebar
 .index
     .sidebar
         position: absolute
@@ -46,7 +82,6 @@
                 width: 55px
                 height: 55px
                 border-radius: 50%
-                border: $light-beige 2px solid
             strong
                 font-size: 1.5rem
                 margin-left: 10px
@@ -74,6 +109,7 @@
                 border-radius: 5px
                 background-color: $light-beige
 
+// Index main
 .index
     main
         height: 100vh

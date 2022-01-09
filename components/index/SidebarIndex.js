@@ -11,7 +11,13 @@ import Router from "next/router";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
-const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
+const SidebarIndex = ({
+	onSidebar,
+	setOnSidebar,
+	rooms,
+	onModal,
+	setOnModal,
+}) => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext;
 	const { name, photoUrl, id } = currentUser;
@@ -42,7 +48,10 @@ const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 				<div className="sidebar--roomList">
 					<div className="create">
 						<p>Create a Room</p>
-						<FontAwesomeIcon icon={faPlusSquare} />
+						<FontAwesomeIcon
+							icon={faPlusSquare}
+							onClick={() => setOnModal(!onModal)}
+						/>
 					</div>
 					<ul>
 						{rooms.map((room) => (
