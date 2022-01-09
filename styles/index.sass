@@ -3,7 +3,7 @@
     position: relative
 
 .index
-    aside
+    .sidebar
         position: absolute
         left: -20rem
         height: 100vh
@@ -23,27 +23,52 @@
             top: 7%
             transition: .4s
             width: 2.5rem
+            height: 2.5rem
             cursor: pointer
             color: $beige
             &.off
                 transform: rotateZ(180deg)
             +mq(lg)
                 display: none
-    .sidebar
+
         &--currentUser
             display: flex
             align-items: center
+            margin-bottom: 2rem
+            a
+                display: flex
+                align-items: center
             img
-                width: 50px
-                height: 50px
+                width: 55px
+                height: 55px
                 border-radius: 50%
+                border: $light-beige 2px solid
             strong
-                font-size: 1.25rem
-                margin-left: 5px
+                font-size: 1.5rem
+                margin-left: 10px
             .fa-door-open
                 width: 2.5rem
+                height: 2.5rem
                 margin-left: auto
                 cursor: pointer
+
+        &--roomList
+            .create
+                display: flex
+                align-items: center
+                margin-bottom: .25rem
+                p
+                    margin-left: auto
+                .fa-plus-square
+                    width: 2rem
+                    height: 2rem
+                    margin-left: .25rem
+                    cursor: pointer
+            li
+                padding: 1rem .5rem
+                margin-bottom: .25rem
+                border-radius: 5px
+                background-color: $light-beige
 
 .index
     main

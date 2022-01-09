@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 import {
 	faArrowCircleLeft,
 	faDoorOpen,
+	faPlusSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthContext from "../context/auth/AuthContext";
@@ -14,16 +15,20 @@ const SidebarIndex = ({ onSidebar, setOnSidebar }) => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext;
 
+	const { name, photoUrl, id } = currentUser;
+
 	return (
 		<>
 			<aside className={`${onSidebar ? "on" : "off"} sidebar`}>
 				<div className="sidebar--currentUser">
-					{/* <p>
-						<img src={photoUrl} alt="avatar" />
-					</p> */}
-					<strong>
-						{currentUser ? currentUser.name : "username"}
-					</strong>
+					<Link href={`/users/${id}`}>
+						<a>
+							<p>
+								<img src={photoUrl} alt="avatar" />
+							</p>
+							<strong>{name ? name : "username"}</strong>
+						</a>
+					</Link>
 					<FontAwesomeIcon
 						icon={faDoorOpen}
 						onClick={() => {
@@ -33,6 +38,24 @@ const SidebarIndex = ({ onSidebar, setOnSidebar }) => {
 							}
 						}}
 					/>
+				</div>
+
+				<div className="sidebar--roomList">
+					<div className="create">
+						<p>Create a Room</p>
+						<FontAwesomeIcon icon={faPlusSquare} />
+					</div>
+					<ul>
+						<li>
+							<strong>Room 1</strong>
+						</li>
+						<li>
+							<strong>Room 2</strong>
+						</li>
+						<li>
+							<strong>Room 3</strong>
+						</li>
+					</ul>
 				</div>
 
 				<div>

@@ -3,6 +3,7 @@ import SidebarIndex from "../components/SidebarIndex";
 import MainIndex from "../components/MainIndex";
 import AuthContext from "../context/auth/AuthContext";
 import Router from "next/router";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Home = () => {
 	const authContext = useContext(AuthContext);
@@ -17,11 +18,17 @@ const Home = () => {
 	return (
 		<>
 			<div className="index">
-				<SidebarIndex
-					onSidebar={onSidebar}
-					setOnSidebar={setOnSidebar}
-				/>
-				<MainIndex />
+				{!currentUser || !currentUser.name ? (
+					<LoadingSpinner />
+				) : (
+					<>
+						<SidebarIndex
+							onSidebar={onSidebar}
+							setOnSidebar={setOnSidebar}
+						/>
+						<MainIndex />
+					</>
+				)}
 			</div>
 		</>
 	);
