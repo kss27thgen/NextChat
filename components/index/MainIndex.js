@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
+const initialCurrentRoom = {
+	messages: [],
+	roomname: "",
+};
+
 const MainIndex = ({ rooms }) => {
-	const [currentRoom, setCurrentRoom] = useState({
-		messages: [],
-		roomname: "",
-	});
+	const [currentRoom, setCurrentRoom] = useState(initialCurrentRoom);
 	const { roomname, messages } = currentRoom;
 
 	useEffect(() => {
