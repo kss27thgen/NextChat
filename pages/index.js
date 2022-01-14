@@ -7,10 +7,14 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import Modal from "../components/index/modal/Modal";
+import RoomContext from "../context/room/RoomContext";
 
 const Home = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext;
+
+	const roomContext = useContext(RoomContext);
+	const { setCurrentRoom } = roomContext;
 
 	const [onSidebar, setOnSidebar] = useState(true);
 	const [rooms, setRooms] = useState([]);
@@ -32,8 +36,8 @@ const Home = () => {
 					let index = result.findIndex(
 						(room) => room.id === change.doc.id,
 					);
-					console.log(result[index]);
 					result[index] = { id: change.doc.id, ...change.doc.data() };
+					setCurrentRoom(result[index]);
 				}
 				if (change.type === "removed") {
 					console.log("removed");

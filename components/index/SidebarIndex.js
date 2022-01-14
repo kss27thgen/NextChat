@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import {
 	faArrowCircleLeft,
 	faDoorOpen,
+	faEdit,
 	faPlusSquare,
 	faTimes,
 	faUser,
@@ -10,6 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthContext from "../../context/auth/AuthContext";
 import ModalContext from "../../context/modal/ModalContext";
+import RoomContext from "../../context/room/RoomContext";
 import Router from "next/router";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
@@ -22,6 +24,9 @@ const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 
 	const modalContext = useContext(ModalContext);
 	const { setModalType, modalOn } = modalContext;
+
+	const roomContext = useContext(RoomContext);
+	const { setCurrentRoom } = roomContext;
 
 	return (
 		<>
@@ -72,15 +77,32 @@ const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 					</div>
 					<ul>
 						{rooms.map((room) => (
-							<li key={room.id}>
+							<li
+								key={room.id}
+								onClick={() => {
+									setCurrentRoom(room);
+								}}
+							>
 								<p>{room.roomname}</p>
 								<FontAwesomeIcon
-									icon={faTimes}
+									icon={faEdit}
 									onClick={() => {
+										setModalType("editRoomname");
+										modalOn();
+									}}
+								/>
+								<FontAwesomeIcon
+									icon={faTimes}
+									onClick={async () => {
 										if (confirm("Delete this room, OK?")) {
-											deleteDoc(
+											await deleteDoc(
 												doc(db, "rooms", room.id),
 											);
+											setCurrentRoom({
+												id: "",
+												roomname: "",
+												messages: [],
+											});
 										}
 									}}
 								/>

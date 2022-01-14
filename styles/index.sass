@@ -117,15 +117,20 @@
                 &:hover
                     color: #555
                     transform: translateX(5px)
+                .fa-edit
+                    width: 1.25rem
+                    margin-left: auto
+                    &:hover
+                        color: blue
                 .fa-times
                     width: 1rem
-                    margin-left: auto
+                    margin-left: .2rem
                     &:hover
                         color: red
 
 // Index main
 .index
-    main
+    .indexMain
         height: 100vh
         padding: 2rem 4rem
         transition: .3s
@@ -133,3 +138,7 @@
         +mq(lg)
             width: calc( 100vw - 20rem )
             transform: translateX(20rem)
+        &--top
+            display: flex
+        h3
+            margin-left: auto

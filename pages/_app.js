@@ -2,6 +2,7 @@ import Head from "next/head";
 import AuthContextComponent from "../components/AuthContextComponent";
 import AuthState from "../context/auth/AuthState";
 import ModalState from "../context/modal/ModalState";
+import RoomState from "../context/room/RoomState";
 import "../styles/globals.css";
 import "../styles/main.sass";
 
@@ -18,8 +19,10 @@ function MyApp({ Component, pageProps }) {
 			</Head>
 			<AuthState>
 				<ModalState>
-					<AuthContextComponent />
-					<Component {...pageProps} />
+					<RoomState>
+						<AuthContextComponent />
+						<Component {...pageProps} />
+					</RoomState>
 				</ModalState>
 			</AuthState>
 		</>

@@ -9,7 +9,7 @@ const Modal = () => {
 	const displayModalContent = (modalType) => {
 		switch (modalType) {
 			case "createRoom":
-			case "editRoom":
+			case "editRoomname":
 				return <CreateRoomModal />;
 				break;
 			case "":
