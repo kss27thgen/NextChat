@@ -5,7 +5,11 @@ import roomReducer from "./RoomReducer";
 
 const RoomState = (props) => {
 	const initialState = {
-		currentRoom: null,
+		currentRoom: {
+			id: "",
+			roomname: "",
+			messages: [],
+		},
 	};
 
 	const [state, dispatch] = useReducer(roomReducer, initialState);

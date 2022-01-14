@@ -25,7 +25,7 @@ const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 	const { setModalType, modalOn } = modalContext;
 
 	const roomContext = useContext(RoomContext);
-	const { currentRoom, setCurrentRoom } = roomContext;
+	const { setCurrentRoom } = roomContext;
 
 	return (
 		<>

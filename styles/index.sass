@@ -125,7 +125,7 @@
 
 // Index main
 .index
-    main
+    .indexMain
         height: 100vh
         padding: 2rem 4rem
         transition: .3s
@@ -133,3 +133,7 @@
         +mq(lg)
             width: calc( 100vw - 20rem )
             transform: translateX(20rem)
+        &--top
+            display: flex
+        h3
+            margin-left: auto

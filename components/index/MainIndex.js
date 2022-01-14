@@ -1,35 +1,25 @@
 import React, { useEffect, useState } from "react";
-
-const initialCurrentRoom = {
-	messages: [],
-	roomname: "",
-};
+import { useContext } from "react/cjs/react.development";
+import RoomContext from "../../context/room/RoomContext";
 
 const MainIndex = ({ rooms }) => {
-	const [currentRoom, setCurrentRoom] = useState(initialCurrentRoom);
-	const { roomname, messages } = currentRoom;
+	const roomContext = useContext(RoomContext);
+	const { currentRoom } = roomContext;
 
-	useEffect(() => {
-		if (rooms[1]) {
-			setCurrentRoom(rooms[1]);
-		}
-	}, [rooms]);
+	const { roomname, messages } = currentRoom;
 
 	return (
 		<>
 			<main className="indexMain">
 				<div className="indexMain--top">
-					<h3>{roomname}</h3>
+					<h3>{roomname ? roomname : "Hello, my friend"}</h3>
 				</div>
 
 				<div className="messageList">
-					{messages.length === 0 ? (
-						<div>Loading Messages...</div>
-					) : (
+					{messages.length > 0 &&
 						messages.map((message) => (
 							<div key={message.id}>{message.text}</div>
-						))
-					)}
+						))}
 				</div>
 			</main>
 		</>
