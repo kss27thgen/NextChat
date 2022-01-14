@@ -14,19 +14,34 @@ const Home = () => {
 
 	const [onSidebar, setOnSidebar] = useState(true);
 	const [rooms, setRooms] = useState([]);
-	const [onModal, setOnModal] = useState(false);
 
 	useEffect(() => {
 		if (!currentUser) Router.push("/auth");
 	}, [currentUser]);
 
+	let result = [];
 	useEffect(() => {
 		const unsub = onSnapshot(collection(db, "rooms"), (snapshot) => {
-			snapshot
-				.docChanges()
-				.forEach((change) =>
-					setRooms((rooms) => [...rooms, change.doc.data()]),
-				);
+			snapshot.docChanges().forEach((change) => {
+				if (change.type === "added") {
+					console.log("added");
+					result.push({ id: change.doc.id, ...change.doc.data() });
+				}
+				if (change.type === "modified") {
+					console.log("modified");
+					let index = result.findIndex(
+						(room) => room.id === change.doc.id,
+					);
+					console.log(result[index]);
+					result[index] = { id: change.doc.id, ...change.doc.data() };
+				}
+				if (change.type === "removed") {
+					console.log("removed");
+					result = result.filter((room) => room.id !== change.doc.id);
+				}
+			});
+			console.log("run setRooms", result);
+			setRooms(result);
 		});
 
 		return () => {
@@ -42,14 +57,12 @@ const Home = () => {
 					<LoadingSpinner />
 				) : (
 					<>
-						<Modal onModal={onModal} setOnModal={setOnModal} />
+						<Modal />
 
 						<SidebarIndex
 							onSidebar={onSidebar}
 							setOnSidebar={setOnSidebar}
 							rooms={rooms}
-							onModal={onModal}
-							setOnModal={setOnModal}
 						/>
 
 						<MainIndex rooms={rooms} />

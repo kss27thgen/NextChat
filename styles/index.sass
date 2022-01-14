@@ -36,9 +36,9 @@
             display: flex
             align-items: center
             background-color: #fff
+            border: 3px solid #ccc
             border-radius: 5px
             padding: 0 .25rem
-            border: #ccc 1px solid
             padding: .1rem
             // &:hover + .sidebar--userMenu .wrapper
             //     opacity: 1
@@ -50,7 +50,7 @@
                 height: 55px
                 border-radius: 50%
                 cursor: pointer
-                border: 1px solid #bbb
+                border: 2px solid #ddd
             strong
                 font-size: 1.5rem
                 margin-left: 10px
@@ -58,7 +58,7 @@
         &--userMenu
             height: 3rem
             // .wrapper
-            //     opacity: 1
+            //     opacity: 0
             //     transition: .4s
             //     &:hover
             //         opacity: 1
@@ -73,7 +73,7 @@
                 border: $light-beige 1px solid
                 cursor: pointer
                 border-radius: 3px
-                margin-top: .1rem
+                margin-top: .2rem
                 color: #777
                 &:hover
                     color: #555
@@ -100,8 +100,12 @@
                     height: 2rem
                     margin-left: .25rem
                     cursor: pointer
+                    &:hover
+                        transform: scale(1.1)
             li
-                padding: 1rem .5rem
+                display: flex
+                align-items: center
+                padding: .8rem .5rem
                 margin-bottom: .3rem
                 border-radius: 5px
                 background-color: $light-beige
@@ -109,8 +113,15 @@
                 font-size: 1.25rem
                 cursor: pointer
                 color: #777
+                transition: .3s
                 &:hover
                     color: #555
+                    transform: translateX(5px)
+                .fa-times
+                    width: 1rem
+                    margin-left: auto
+                    &:hover
+                        color: red
 
 // Index main
 .index

@@ -17,12 +17,12 @@
                 opacity: 1
         &--body
             position: absolute
-            top: 10vh
-            bottom: 10vh
+            top: 20vh
+            bottom: 20vh
             left: 10vw
             right: 10vw
             width: 80vw
-            height: 80vh
+            height: 60vh
             transform: scale(0)
             transition: .3s
             background-color: $light-beige
@@ -43,6 +43,37 @@
 .modal--body
     .createRoom
         display: flex
+        flex-direction: column
         justify-content: center
+        align-items: center
+        height: 100%
         h3
-            font-size: 2rem
+            font-size: 2.5rem
+            margin-bottom: 2.5rem
+        form
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: 100%
+            input
+                width: 90%
+                max-width: 25rem
+                padding: 1rem
+                font-size: 1.5rem
+                border-radius: 5px
+                border: #ccc 1px solid
+                outline: none
+                margin-bottom: 1.5rem
+                &::placeholder
+                    color: #ccc
+                    font-size: 1.1rem
+                +mq(lg)
+                    max-width: 30rem
+            button
+                background-color: transparent
+                border: none
+                cursor: pointer
+                .fa-check-circle
+                    width: 3rem
+                    height: 3rem
+                    color: #555

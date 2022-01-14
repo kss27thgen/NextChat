@@ -1,18 +1,34 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import ModalContext from "../../../context/modal/ModalContext";
 import CreateRoomModal from "../../index/modal/createRoomModal";
 
-const Modal = ({ onModal, setOnModal }) => {
+const Modal = () => {
 	const modalContext = useContext(ModalContext);
-	const { modalType } = modalContext;
+	const { modalType, modalOff, modalStatus, setModalType } = modalContext;
 
 	const displayModalContent = (modalType) => {
 		switch (modalType) {
 			case "createRoom":
+			case "editRoom":
 				return <CreateRoomModal />;
 				break;
-			case "test":
-				return <div>TEST</div>;
+			case "":
+				return (
+					<div
+						style={{
+							height: "100%",
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<img
+							src="/loading-trans.jpeg"
+							alt="loading"
+							style={{ width: "5rem" }}
+						/>
+					</div>
+				);
 				break;
 			default:
 				break;
@@ -24,10 +40,17 @@ const Modal = ({ onModal, setOnModal }) => {
 			<div className="modal">
 				<>
 					<div
-						className={`${onModal ? "on" : "off"} modal--overlay`}
-						onClick={() => setOnModal(!onModal)}
+						className={`${
+							modalStatus ? "on" : "off"
+						} modal--overlay`}
+						onClick={() => {
+							setModalType("");
+							modalOff();
+						}}
 					></div>
-					<div className={`${onModal ? "on" : "off"} modal--body`}>
+					<div
+						className={`${modalStatus ? "on" : "off"} modal--body`}
+					>
 						{displayModalContent(modalType)}
 					</div>
 				</>
