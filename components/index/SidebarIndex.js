@@ -1,9 +1,10 @@
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
 	faArrowCircleLeft,
 	faDoorOpen,
 	faPlusSquare,
+	faTimes,
 	faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,21 +12,16 @@ import AuthContext from "../../context/auth/AuthContext";
 import ModalContext from "../../context/modal/ModalContext";
 import Router from "next/router";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { deleteDoc, doc } from "firebase/firestore";
 
-const SidebarIndex = ({
-	onSidebar,
-	setOnSidebar,
-	rooms,
-	onModal,
-	setOnModal,
-}) => {
+const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext;
 	const { name, photoUrl, id } = currentUser;
 
 	const modalContext = useContext(ModalContext);
-	const { setModalType } = modalContext;
+	const { setModalType, modalOn } = modalContext;
 
 	return (
 		<>
@@ -70,13 +66,25 @@ const SidebarIndex = ({
 							icon={faPlusSquare}
 							onClick={() => {
 								setModalType("createRoom");
-								setOnModal(!onModal);
+								modalOn();
 							}}
 						/>
 					</div>
 					<ul>
 						{rooms.map((room) => (
-							<li key={room.id}>{room.roomname}</li>
+							<li key={room.id}>
+								<p>{room.roomname}</p>
+								<FontAwesomeIcon
+									icon={faTimes}
+									onClick={() => {
+										if (confirm("Delete this room, OK?")) {
+											deleteDoc(
+												doc(db, "rooms", room.id),
+											);
+										}
+									}}
+								/>
+							</li>
 						))}
 					</ul>
 				</div>
