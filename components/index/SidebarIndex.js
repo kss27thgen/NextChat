@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import {
 	faArrowCircleLeft,
 	faDoorOpen,
+	faEdit,
 	faPlusSquare,
 	faTimes,
 	faUser,
@@ -84,12 +85,24 @@ const SidebarIndex = ({ onSidebar, setOnSidebar, rooms }) => {
 							>
 								<p>{room.roomname}</p>
 								<FontAwesomeIcon
-									icon={faTimes}
+									icon={faEdit}
 									onClick={() => {
+										setModalType("editRoomname");
+										modalOn();
+									}}
+								/>
+								<FontAwesomeIcon
+									icon={faTimes}
+									onClick={async () => {
 										if (confirm("Delete this room, OK?")) {
-											deleteDoc(
+											await deleteDoc(
 												doc(db, "rooms", room.id),
 											);
+											setCurrentRoom({
+												id: "",
+												roomname: "",
+												messages: [],
+											});
 										}
 									}}
 								/>
